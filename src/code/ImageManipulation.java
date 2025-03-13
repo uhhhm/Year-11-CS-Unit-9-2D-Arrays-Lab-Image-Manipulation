@@ -10,7 +10,8 @@ public class ImageManipulation {
      */
     public static void main(String[] args) {
         APImage img = new APImage("/Users/username/Desktop/untitled folder 5/java vscode/Year-11-CS-Unit-9-2D-Arrays-Lab-Image-Manipulation/cyberpunk2077.jpg");
-        img.draw();
+        // img.draw();
+        rotateImage("/Users/username/Desktop/untitled folder 5/java vscode/Year-11-CS-Unit-9-2D-Arrays-Lab-Image-Manipulation/cyberpunk2077.jpg");
     }
 
     /** CHALLENGE ONE: Grayscale
@@ -134,24 +135,15 @@ public class ImageManipulation {
      * OUTPUT: the image rotated 90 degrees CLOCKWISE
      *
      *  */
-    public static void reflectImageHelper(APImage image) {
-        APImage clone = image.clone();
-        for(int y = 0; y < image.getHeight(); y++){
-            for(int x = 0; x < image.getWidth(); x++){
-                clone.setPixel(x, y, image.getPixel(image.getWidth()-x-1, y));
-            }
-        }
-        clone.draw();
-    }
     public static void rotateImage(String pathToFile) {
         APImage img = new APImage(pathToFile);
         APImage clone = new APImage(img.getHeight(), img.getWidth());
         for(int x = 0; x < img.getWidth(); x++){
             for(int y = 0; y < img.getHeight(); y++){
-                clone.setPixel(y, x, img.getPixel(x, y));
+                clone.setPixel(img.getHeight()-y-1, x, img.getPixel(x, y));
             }
         }
-        reflectImageHelper(clone);
+        clone.draw();
     }
 
 }
